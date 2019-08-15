@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 // %EndTag(PUBLISHER)%
 
 // %Tag(LOOP_RATE)%
-  ros::Rate loop_rate(1000);
+  ros::Rate loop_rate(500);
 // %EndTag(LOOP_RATE)%
 
   /**
