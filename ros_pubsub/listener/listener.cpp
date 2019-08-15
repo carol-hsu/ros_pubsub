@@ -28,14 +28,28 @@
 // %Tag(FULLTEXT)%
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <iostream>
+#include <string>
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
 // %Tag(CALLBACK)%
+
+extern boost::posix_time::time_duration avg_duration;
+
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
-{
-  ROS_INFO("I heard: [%s]", msg->data.c_str());
+{ 
+  std::string got_msg = msg->data;
+  auto strlen = got_msg.length();
+  auto slices = got_msg.find(" 2019-Aug-");
+  std::string count = got_msg.substr(12, slices-12);
+  auto number = stoi(count);
+  std::string sending_time = got_msg.substr(strlen-27, strlen-1);
+
+  auto duration = boost::posix_time::microsec_clock::local_time() - boost::posix_time::time_from_string(sending_time);
+  std::cout << duration.total_microseconds() << std::endl;
+  ROS_INFO("I heard: [%s]", count.c_str());
 }
 // %EndTag(CALLBACK)%
 

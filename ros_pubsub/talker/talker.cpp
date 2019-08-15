@@ -30,6 +30,8 @@
 // %EndTag(ROS_HEADER)%
 // %Tag(MSG_HEADER)%
 #include "std_msgs/String.h"
+#include <boost/date_time/posix_time/posix_time.hpp>
+
 // %EndTag(MSG_HEADER)%
 
 #include <sstream>
@@ -84,7 +86,7 @@ int main(int argc, char **argv)
 // %EndTag(PUBLISHER)%
 
 // %Tag(LOOP_RATE)%
-  ros::Rate loop_rate(100);
+  ros::Rate loop_rate(1000);
 // %EndTag(LOOP_RATE)%
 
   /**
@@ -103,7 +105,8 @@ int main(int argc, char **argv)
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "hello world " << count;
+    auto start_sending_micros_ = boost::posix_time::microsec_clock::local_time();
+    ss << "hello world " << count << " " << to_simple_string(start_sending_micros_);
     msg.data = ss.str();
 // %EndTag(FILL_MESSAGE)%
 

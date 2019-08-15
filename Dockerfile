@@ -4,7 +4,8 @@ ARG PKG_DIR=/opt/ros/
 
 RUN apt-get update && \
     apt-get install -y ros-melodic-catkin \
-                       python-catkin-tools
+                       python-catkin-tools \
+                       libboost-all-dev
 
 
 RUN mkdir -p $PKG_DIR/src
