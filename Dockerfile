@@ -20,5 +20,4 @@ WORKDIR $PKG_DIR
 RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     catkin build
 
-RUN echo "gtue-desktop  45.45.0.2" >> /etc/hosts
 RUN echo "source $PKG_DIR/devel/setup.bash" >> ~/.bashrc

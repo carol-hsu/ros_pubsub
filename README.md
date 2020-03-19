@@ -41,4 +41,9 @@ $ rosrun roscpp_tutorials talker
 
 1. Build container images and push to private registery
 
-2. Run Kubernetes configuration file
+2. Run Kubernetes configuration file (under directory `k8s`)
+
+Running `core_sub.yml` first to create core processor and subscriber processor, along with Kubernetes Service for Core processor.
+
+Then, running `pub.yml`, which creates publisher and its **headless** service.
+
